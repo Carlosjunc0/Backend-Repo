@@ -17,3 +17,6 @@ node_modules
 
 # README file is for local use only
 .README.md
+
+# ignore lock yaml file
+pnpm-lock.yaml
