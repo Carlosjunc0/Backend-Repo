@@ -24,6 +24,7 @@ app.set("layout", "./layouts/layout") // not at views root
 app.use(static)
 
 //Index Route
+// This route renders the index.ejs file
 app.get("/", function(req, res){
   res.render("index", {title: "Home"})
 })
