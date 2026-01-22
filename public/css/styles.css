@@ -46,7 +46,7 @@ body {
 /******* Navigation Bar ***************/
 nav {
   background-color: #000000;
-  padding: 0.3rem 0;
+  padding: 0.5rem 0;
 }
 
 nav ul {
@@ -60,7 +60,17 @@ nav ul li {
   font-size: 1.2rem;
   list-style: none;
   font-weight: bold;
+}
+
+nav a {
+  padding: 0.3rem 0.6rem;
+  text-decoration: none;
   color: white;
+}
+
+nav a:hover {
+  background-color: white;
+  color: black;
 }
 
 /******* Hero Section ***************/
@@ -173,6 +183,69 @@ nav ul li {
 .grid-container2 p {
   line-height: 1.6;
   font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+}
+
+/******* Inventory Display ***************/
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  list-style: none;
+  padding: 1rem 0;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+/* Card */
+#inv-display li {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image */
+#inv-display img {
+  width: 100%;
+  height: 170px;
+  border-radius: 4px;
+}
+
+/* Divider */
+#inv-display hr {
+  margin: 0.75rem 0;
+  border: none;
+  border-top: 8px solid #1e1e1e;
+}
+
+/* Name + Price container */
+.namePrice {
+  margin-top: 0.5rem;
+}
+
+/* Vehicle name */
+.namePrice h2 {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.namePrice h2 a {
+  color: #0033cc;
+  text-decoration: underline;
+}
+
+/* Price */
+.namePrice span {
+  font-size: 1.1rem;
+  font-weight: bold;
+  display: block;
+  margin-top: 0.25rem;
 }
 
 /******* Footer ***************/
