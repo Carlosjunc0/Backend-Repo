@@ -13,6 +13,7 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/")
+const path = require("path")
 
 /* ***********************
  * View Engine and Templates
@@ -24,6 +25,12 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Routes
  *************************/
+// Favicon route
+app.get("/favicon.ico", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "images", "site", "icon.png"))
+})
+
+// Static Files
 app.use(static)
 
 //Index Route

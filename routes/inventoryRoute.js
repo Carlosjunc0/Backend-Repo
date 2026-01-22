@@ -10,4 +10,9 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 // Route to build inventory detail view
 router.get("/detail/:inv_id", utilities.handleErrors(invController.buildDetailView));
 
+// 
+router.get("/causeError", utilities.handleErrors((req,res) => {
+  throw new Error("Intentional server crash!")
+}))
+
 module.exports = router;
