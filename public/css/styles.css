@@ -290,6 +290,78 @@ nav a:hover {
   font-weight: bold;
 }
 
+/* ******* form ****** */
+form {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.flash {
+  padding: 10px;
+  background: #ffe9aa;
+  border: 1px solid #e6c76b;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.login-container {
+  min-height: 40vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.password-hint {
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.show-password {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+input:required:invalid, input:focus:invalid {
+  border: 2px solid #e74c3c;
+}
+
+input:required:valid {
+  border: 2px solid #2ecc71;
+}
+
 /******* Footer ***************/
 footer {
   margin-top: 2rem;
@@ -330,5 +402,9 @@ footer {
 
   .vehicle-detail-info {
     padding: 1.5rem;
+  }
+
+  form {
+    align-content: center;
   }
 }
