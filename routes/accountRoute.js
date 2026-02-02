@@ -30,7 +30,7 @@ router.post(
 router.post(
   "/login",
   regValidate.loginRules(),
-  regValidate.checkRegData,
+  regValidate.checkLoginData,
   (req, res) => {
     res.status(200).send("login process")
   }

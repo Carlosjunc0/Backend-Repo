@@ -48,6 +48,7 @@ app.use(flash())
 // Expose flash messages to all views
 app.use((req, res, next) => {
   res.locals.notice = req.flash("notice")
+  res.locals.errors = req.flash("errors")
   next()
 })
 

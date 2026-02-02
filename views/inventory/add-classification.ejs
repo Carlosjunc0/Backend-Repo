@@ -1,0 +1,24 @@
+<h1>Add New Classification</h1>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<form action="/inv/add-classification" method="post">
+  <label for="classification_name">Classification Name</label>
+  <input
+    type="text"
+    id="classification_name"
+    name="classification_name"
+    required
+    pattern="^[A-Za-z0-9]+$"
+    title="No spaces or special characters allowed"
+    value="<%= locals.classification_name || "" %>" placeholder="NAME MUST BE ALPHABETIC CHARACTERS ONLY"
+  />
+
+  <button type="submit">Add Vehicle</button>
+</form>

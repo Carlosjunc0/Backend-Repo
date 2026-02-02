@@ -1,0 +1,46 @@
+<h1>Add New Vehicle</h1>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(err=> { %>
+      <li>
+        <%= err.msg %>
+      </li>
+      <% }) %>
+  </ul>
+  <% } %>
+
+    <form action="/inv/add-inventory" method="post">
+      <label>Classification:</label>
+      <%- classificationList %>
+
+        <label>Make:</label>
+        <input name="inv_make" required type="text" minlength="3" value="<%= locals.inv_make || "" %>" placeholder="Min of 3 characters">
+
+        <label>Model:</label>
+        <input name="inv_model" required type="text" minlength="3" value="<%= locals.inv_model || "" %>" placeholder="Min of 3 characters">
+
+        <label>Description:</label>
+        <textarea name="inv_description" required><%= locals.inv_description || "" %></textarea>
+
+        <label>Image Path:</label>
+        <input name="inv_image" required value="<%= locals.inv_image || "" %>">
+
+        <label>Thumbnail Path:</label>
+        <input name="inv_thumbnail" required value="<%= locals.inv_thumbnail || "" %>">
+
+        <label>Price:</label>
+        <input name="inv_price" required type="number" value="<%= locals.inv_price || "" %>"
+          placeholder="Decimal or integer">
+
+        <label>Year:</label>
+        <input name="inv_year" required type="number" min="1000" max="9999" value="<%= locals.inv_year || "" %>" placeholder="4-digit year">
+
+        <label>Miles:</label>
+        <input name="inv_miles" required type="number" value="<%= locals.inv_miles || "" %>" placeholder="Digits only">
+
+        <label>Color:</label>
+        <input name="inv_color" type="text" required value="<%= locals.inv_color || "" %>">
+
+        <button type="submit">Add Inventory</button>
+    </form>

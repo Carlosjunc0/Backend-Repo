@@ -1,0 +1,12 @@
+<h1>Inventory Management</h1>
+
+<% if (locals.notice && locals.notice.length > 0) { %>
+  <div class="notice">
+    <%= locals.notice[0] %>
+  </div>
+<% } %>
+
+<ul class="manage-links">
+  <li><a href="/inv/add-classification">Add New Classification</a></li>
+  <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
+</ul>
