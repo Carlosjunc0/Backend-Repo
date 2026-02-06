@@ -1,0 +1,39 @@
+<h1>Delete Vehicle</h1>
+
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(err=> { %>
+            <li>
+                <%= err.msg %>
+            </li>
+            <% }) %>
+    </ul>
+    <% } %>
+
+        <form id="updateForm" action="/inv/delete" method="post">
+
+                <label>Make:</label>
+                <input name="inv_make" required type="text" minlength="3" value="<%= locals.inv_make || "" %>"
+                    placeholder="Min of 3 characters">
+
+                <label>Model:</label>
+                <input name="inv_model" required type="text" minlength="3" value="<%= locals.inv_model || "" %>"
+                    placeholder="Min of 3 characters">
+
+                <label>Year:</label>
+                <input name="inv_year" required type="number" min="1000" max="9999" value="<%= locals.inv_year || "" %>"
+                    placeholder="4-digit year">
+
+                <label>Price:</label>
+                <input name="inv_price" required type="number" value="<%= locals.inv_price || "" %>"
+                    placeholder="Decimal or integer">
+
+                <p class="notice">
+                    Confirm Deletion - This action is permanent and cannot be undone.
+                </p>
+
+                <button type="submit">Delete Vehicle</button>
+
+                <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                    <% } %>>
+        </form>

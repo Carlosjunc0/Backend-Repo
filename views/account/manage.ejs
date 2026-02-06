@@ -1,0 +1,31 @@
+<h1>Account Management</h1>
+
+<% if (notice && notice.length> 0) { %>
+    <div class="notice">
+        <%= notice[0] %>
+    </div>
+    <% } %>
+
+        <% if (account_data) { %>
+            <p>Welcome, <%= account_data.account_firstname %>!</p>
+
+            <dl>
+                <dt>First Name:</dt>
+                <dd>
+                    <%= account_data.account_firstname %>
+                </dd>
+                <dt>Last Name:</dt>
+                <dd>
+                    <%= account_data.account_lastname %>
+                </dd>
+                <dt>Email:</dt>
+                <dd>
+                    <%= account_data.account_email %>
+                </dd>
+            </dl>
+
+
+            <p>
+                <a href="/account/logout">Log Out</a>
+            </p>
+            <% } %>

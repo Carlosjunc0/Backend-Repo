@@ -377,6 +377,57 @@ input:required:valid {
   line-height: 1.8;
 }
 
+/******* Inventory Management Table ***************/
+#inventoryDisplay {
+  width: 100%;
+  margin-top: 1.5rem;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Table Head */
+#inventoryDisplay thead {
+  background-color: #1ba7c9;
+  color: white;
+}
+
+#inventoryDisplay th {
+  padding: 12px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+/* Table Body */
+#inventoryDisplay td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+/* Zebra stripes */
+#inventoryDisplay tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover */
+#inventoryDisplay tbody tr:hover {
+  background-color: #eef7fa;
+}
+
+/* Links */
+#inventoryDisplay a {
+  color: #0033cc;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#inventoryDisplay a:hover {
+  text-decoration: underline;
+}
+
 /******* Footer ***************/
 footer {
   margin-top: 2rem;
