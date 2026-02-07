@@ -26,10 +26,41 @@ router.get(
   utilities.handleErrors(accountController.buildAccountManagement)
 );
 
+// Route to display account update view (GET)
 router.get(
   "/getInventory/:classification_id",
   utilities.handleErrors(invController.getInventoryJSON)
 );
+
+// Route to update account information 
+router.get(
+  "/update/:account_id",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildUpdateView)
+)
+
+// Route to log out the user
+router.get("/logout", 
+  utilities.handleErrors(accountController.logout)
+)
+
+// Route to update account information
+router.post(
+  "/update",
+  utilities.checkJWTToken,
+  regValidate.updateAccountRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updateAccount)
+)
+
+// Route to update account password
+router.post(
+  "/update-password",
+  utilities.checkJWTToken,
+  regValidate.passwordRules(),
+  regValidate.checkPasswordData,
+  utilities.handleErrors(accountController.updatePassword)
+)
 
 // Route to handle registration form submission (POST)
 router.post(
@@ -38,9 +69,6 @@ router.post(
   regValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount),
 );
-
-// Route to handle login form submission (POST)
-// router.post("/login", utilities.handleErrors(accountController.loginAccount))
 
 // Process the login attempt
 router.post(

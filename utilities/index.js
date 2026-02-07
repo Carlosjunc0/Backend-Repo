@@ -1,6 +1,5 @@
 const invModel = require("../models/inventory-model");
 const Util = {};
-const utilities = require("../utilities/");
 const jwt = require("jsonwebtoken")
 require("dotenv").config();
 
@@ -177,6 +176,22 @@ Util.checkLogin = (req, res, next) => {
     req.flash("notice", "Please log in")
     return res.redirect("/account/login")
   }
+}
+
+/* ****************************************
+ * Middleware to check admin or employee
+ **************************************** */
+Util.checkAdminEmployee = (req, res, next) => {
+  if (
+    res.locals.loggedin &&
+    (res.locals.accountData.account_type === "Employee" ||
+     res.locals.accountData.account_type === "Admin")
+  ) {
+    return next()
+  }
+
+  req.flash("notice", "You do not have permission to access this area.")
+  return res.redirect("/account/login")
 }
 
 module.exports = Util;

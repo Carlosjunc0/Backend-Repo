@@ -7,17 +7,28 @@ const invCont = {};
  *  Build inventory by classificationId view
  * ************************ */
 invCont.buildByClassificationId = async function (req, res, next) {
-  const classification_id = req.params.classificationId;
-  const data = await invModel.getInventoryByClassificationId(classification_id);
-  const grid = await utilities.buildClassificationGrid(data);
-  let nav = await utilities.getNav();
-  const className = data[0].classification_name;
-  res.render("./inventory/classification", {
-    title: className + " vehicles",
+  const classification_id = req.params.classificationId
+  const nav = await utilities.getNav()
+  const data = await invModel.getInventoryByClassificationId(classification_id)
+
+  let classificationName = "Classification"
+
+  if (data.length > 0) {
+    classificationName = data[0].classification_name
+  }
+
+  const grid = await utilities.buildClassificationGrid(data)
+
+  res.render("inventory/classification", {
+    title: classificationName,
     nav,
     grid,
-  });
-};
+    message:
+      data.length === 0
+        ? "No vehicles found for this classification. You may add one or delete this classification."
+        : null,
+  })
+}
 
 /* ************************
  *  Build inventory detail view

@@ -5,9 +5,13 @@
     <% } else { res.redirect('/') } %>
 
         <% if (notice && notice.length> 0) { %>
-            <div class="notice">
-                <%= notice[0] %>
-            </div>
+            <ul class="notice">
+                <% notice.forEach(msg=> { %>
+                    <li>
+                        <%= msg %>
+                    </li>
+                    <% }) %>
+            </ul>
             <% } %>
 
                 <% if (errors && errors.length> 0) { %>

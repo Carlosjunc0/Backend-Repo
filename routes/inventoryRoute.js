@@ -4,6 +4,7 @@ const router = new express.Router();
 const invController = require("../controllers/invController");
 const utilities = require("../utilities/");
 const invValidate = require("../utilities/inventory-validation");
+const authorize = require("../utilities/authorize");
 
 // Route to build inventory by classification view
 router.get(
@@ -29,6 +30,7 @@ router.get(
 router.get(
   "/",
   utilities.checkLogin,
+  utilities.checkAdminEmployee,
   utilities.handleErrors(invController.buildManagementView),
 );
 
@@ -41,12 +43,16 @@ router.get(
 // Route to deliver edit inventory view
 router.get(
   "/edit/:inv_id",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   utilities.handleErrors(invController.editInventoryView),
 );
 
 // Route to deliver add-inventory view
 router.get(
   "/add-inventory",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   utilities.handleErrors(invController.buildAddInventory),
 );
 
@@ -59,13 +65,19 @@ router.get(
 // Deliver delete confirmation view
 router.get(
   "/delete/:inv_id",
-  utilities.handleErrors(invController.deleteInventoryView)
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
+  utilities.handleErrors(invController.deleteInventoryView),
 );
 
 // Process inventory deletion
 router.post(
   "/delete",
-  utilities.handleErrors(invController.deleteInventory)
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
+  invValidate.inventoryRules(),
+  invValidate.checkDeleteData,
+  utilities.handleErrors(invController.deleteInventory),
 );
 
 // Route to process adding classification
@@ -79,6 +91,8 @@ router.post(
 // Route to process adding inventory
 router.post(
   "/add-inventory",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory),
@@ -86,9 +100,11 @@ router.post(
 
 router.post(
   "/update",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   invValidate.inventoryRules(),
   invValidate.checkUpdateData,
-  utilities.handleErrors(invController.updateInventory)
-)
+  utilities.handleErrors(invController.updateInventory),
+);
 
 module.exports = router;

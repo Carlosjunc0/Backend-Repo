@@ -118,4 +118,20 @@ validate.checkUpdateData  = async (req, res, next) => {
   next()
 }
 
+validate.checkDeleteData = async (req, res, next) => {
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("inventory/delete-confirm", {
+      title: "Delete Vehicle",
+      nav,
+      errors,
+      ...req.body
+    })
+    return
+  }
+  next()
+}
+
 module.exports = validate;

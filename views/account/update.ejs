@@ -1,0 +1,76 @@
+<h1>
+  <%= title %>
+</h1>
+
+<% if (notice && notice.length> 0) { %>
+  <ul class="notice">
+    <% notice.forEach(msg=> { %>
+      <li>
+        <%= msg %>
+      </li>
+      <% }) %>
+  </ul>
+  <% } %>
+
+    <% if (locals.errors) { %>
+      <ul class="errors">
+        <% errors.array().forEach(error=> { %>
+          <li>
+            <%= error.msg %>
+          </li>
+          <% }) %>
+      </ul>
+      <% } %>
+
+        <h2>Account Update</h2>
+
+        <form action="/account/update" method="post">
+          <label>First Name</label>
+          <input required name="account_firstname" value="<%= locals.account_firstname %>">
+
+          <label>Last Name</label>
+          <input required name="account_lastname" value="<%= locals.account_lastname %>">
+
+          <label>Email</label>
+          <input required type="email" name="account_email" value="<%= locals.account_email %>">
+
+          <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+
+          <button type="submit" disabled>Update Account</button>
+        </form>
+
+        <hr>
+
+        <h2>Change Password</h2>
+
+        <form action="/account/update-password" method="post">
+          <label for="account_password">New Password</label>
+          <input required type="password" id="account_password" name="account_password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{12,}">
+
+          <small class="password-hint">Password must be minimum of 12 characters and include 1
+            capital
+            letter, 1 number and 1 special character</small>
+
+          <div class="show password">
+            <input type="checkbox" id="togglePassword">
+            <label for="togglePassword">Show password</label>
+          </div>
+
+          <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+
+          <button type="submit">Change Password</button>
+        </form>
+
+        <script>
+          const togglePassword = document.getElementById("togglePassword");
+          const passwordInput = document.getElementById("account_password");
+
+          togglePassword.addEventListener("change", function () {
+            if (this.checked) {
+              passwordInput.type = "text";
+            } else {
+              passwordInput.type = "password";
+            }
+          });
+        </script>
